@@ -32,7 +32,8 @@ namespace _Scripts.SERVER
 
         IEnumerator PostTextQuery(string text)
         {
-            string url = "http://10.7.0.28:1000/ask";
+            string url = "http://10.106.29.202:1000/ask";
+            // string url = "http://10.7.0.28:1000/ask";
 
             // Escape special characters in the text to avoid JSON errors
             string escapedText = EscapeJsonString(text);
@@ -80,7 +81,8 @@ namespace _Scripts.SERVER
     #region AUDIO QUERY HANDLER
 
 
-        public string serverUrl = "http://10.7.0.28:1000/whisper";
+        string serverUrl = "http://10.106.29.202:1000/whisper";
+        // string serverUrl = "http://10.7.0.28:1000/whisper";
         private string selectedLanguage = "en";
         public event UnityAction OnAudioQueryResponseReceived;
 
@@ -100,6 +102,7 @@ namespace _Scripts.SERVER
 
             // Append the language as a query parameter in the URL
             string urlWithLanguage = $"{serverUrl}?language={selectedLanguage}";
+            Debug.Log(urlWithLanguage);
 
             using (UnityWebRequest www = UnityWebRequest.Post(urlWithLanguage, form))
             {
