@@ -29,10 +29,11 @@ namespace _Scripts.SERVER
         {
             StartCoroutine(PostTextQuery(text));
         }
-
+        
+        [HideInInspector]public string textResponseUrl = "http://10.106.29.202:1000/ask";
         IEnumerator PostTextQuery(string text)
         {
-            string url = "http://10.106.29.202:1000/ask";
+            string url = textResponseUrl;
             // string url = "http://10.7.0.28:1000/ask";
 
             // Escape special characters in the text to avoid JSON errors
@@ -81,7 +82,7 @@ namespace _Scripts.SERVER
     #region AUDIO QUERY HANDLER
 
 
-        string serverUrl = "http://10.106.29.202:1000/whisper";
+        [HideInInspector]public string serverUrl = "http://10.106.29.202:1000/whisper";
         // string serverUrl = "http://10.7.0.28:1000/whisper";
         private string selectedLanguage = "en";
         public event UnityAction OnAudioQueryResponseReceived;

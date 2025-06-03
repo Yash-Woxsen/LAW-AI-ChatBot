@@ -8,6 +8,7 @@ public class HandleTextQuery : MonoBehaviour
     public TMP_InputField inputTextFieldForQuery;
     public WebServer server;
     public TMP_Text textAreaForChatHistory;
+    public WordByWordTyping wordByWordTyping;
 
     private void OnEnable()
     {
@@ -29,7 +30,8 @@ public class HandleTextQuery : MonoBehaviour
         if (!string.IsNullOrEmpty(text))
         {
             server.SendTextQuery(text);
-            textAreaForChatHistory.text += "<color=#F87297>USER</color>: " + text + "\n";
+            textAreaForChatHistory.text += "\n";
+            textAreaForChatHistory.text += "\n" + "<color=#F87297>USER</color>: " + text + "\n" + "\n";
             inputTextFieldForQuery.text = "";
         }
         else
@@ -42,7 +44,11 @@ public class HandleTextQuery : MonoBehaviour
         // Store values in variables
         string textResponse = server.serverResponseObject.response;
         // Log the parsed data
-        textAreaForChatHistory.text += "<color=#33FFB6>MENTOR</color>: " + textResponse + "\n";
+        // textAreaForChatHistory.text += "<color=#33FFB6>MENTOR</color>: " + textResponse + "\n";
+        
+        textAreaForChatHistory.text += "<color=#33FFB6>MENTOR</color>: ";
+        wordByWordTyping.PrintSentence(textResponse, textAreaForChatHistory);
+        textAreaForChatHistory.text += "\n";
     }
     
     public void OnWhisperServerAudioResponseReceived()
